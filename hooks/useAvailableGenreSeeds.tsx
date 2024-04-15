@@ -1,6 +1,6 @@
 import axios from "axios";
 import useSWR from "swr";
-import { SPOTIFY_API_PREFIX } from "@/utils/constants";
+import { SPOTIFY_API_URL_PREFIX } from "@/utils/constants";
 
 interface GenresResponse {
   genres: string[];
@@ -21,12 +21,16 @@ const useAvailableGenreSeeds = (token: string | null) => {
   const { data, error } = useSWR<string[]>(
     token
       ? [
-          `${SPOTIFY_API_PREFIX + "/recommendations/available-genre-seeds"}`,
+          `${
+            SPOTIFY_API_URL_PREFIX + "/recommendations/available-genre-seeds"
+          }`,
           token,
         ]
       : null,
     fetchGenres,
     {
+      revalidateOnFocus: false, // since this doesn't change often
+      revalidateOnReconnect: true,
       onError: (error) => {
         console.error("Failed to fetch genres:", error);
       },
