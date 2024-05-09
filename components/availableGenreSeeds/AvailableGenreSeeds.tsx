@@ -1,14 +1,10 @@
-import React from "react";
+import React, { Dispatch, SetStateAction, useState } from "react";
 import useGetSpotifyAccessToken from "@/hooks/useGetSpotifyAccessToken";
 import useAvailableGenreSeeds from "@/hooks/useAvailableGenreSeeds";
-import GenreAccordion from "./sub/GenreAccordion";
+import GenreAccordion from "./subcomponents/GenreAccordion";
+import RangeSliderForm from './subcomponents/RangeSliderForm'
 
-interface AvailableGenreSeedsProps {
-  selectedGenres: Set<string>;
-  toggleGenre: (genre: string) => void;
-}
-
-const AvailableGenreSeeds = ({selectedGenres, toggleGenre}: AvailableGenreSeedsProps) => {
+const AvailableGenreSeeds = () => {
   const token = useGetSpotifyAccessToken();
   const { genres, isLoading, isError } = useAvailableGenreSeeds(token);
 
@@ -17,7 +13,12 @@ const AvailableGenreSeeds = ({selectedGenres, toggleGenre}: AvailableGenreSeedsP
 
   return (
     <div className="max-w-full w-5/6">
-      {genres && <GenreAccordion genres={genres} toggleGenre={toggleGenre} />}
+      {genres && (
+        <>
+          <GenreAccordion genres={genres} />
+          <RangeSliderForm />
+        </>
+      )}
     </div>
   );
 };

@@ -2,11 +2,23 @@ import React, { useState } from "react";
 
 interface GenreAccordionProps {
   genres: string[];
-  toggleGenre: (genre: string) => void;
 }
 
-const GenreAccordion = ({ genres, toggleGenre }: GenreAccordionProps) => {
+const GenreAccordion = ({ genres }: GenreAccordionProps) => {
+  const [selectedGenres, setSelectedGenres] = useState<Set<string>>(new Set());
   const [isOpen, setIsOpen] = useState<boolean>(false);
+
+  const toggleGenre = (genre: string) => {
+    setSelectedGenres((prevSelectedGenres) => {
+      const newSet = new Set(prevSelectedGenres);
+      if (newSet.has(genre)) {
+        newSet.delete(genre);
+      } else if (selectedGenres.size < 5) {
+        newSet.add(genre);
+      }
+      return newSet;
+    });
+  };
 
   const toggleAccordion = () => {
     setIsOpen(!isOpen);
@@ -41,6 +53,7 @@ const GenreAccordion = ({ genres, toggleGenre }: GenreAccordionProps) => {
           ))}
         </ul>
       </div>
+      {selectedGenres}
     </>
   );
 };
