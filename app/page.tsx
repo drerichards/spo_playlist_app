@@ -6,8 +6,6 @@ import { useEffect, useState } from "react";
 
 export default function Home() {
   const [selectedGenres, setSelectedGenres] = useState<Set<string>>(new Set());
-  const [minPopularity, setMinPopularity] = useState<number>(0);
-  const [maxPopularity, setMaxPopularity] = useState<number>(100);
 
   const toggleGenre = (genre: string) => {
     setSelectedGenres((prevSelectedGenres) => {
@@ -23,12 +21,10 @@ export default function Home() {
 
   return (
     <main className="flex min-h-screen flex-ro justify-center p-24">
-      <span className="h-96">
+      <span className="h-96 w-full">
         <AvailableGenreSeeds />
       </span>
       <aside></aside>
     </main>
   );
 }
-// get target by getting the mean of the range
-// popu, tempo, live, instrumen
