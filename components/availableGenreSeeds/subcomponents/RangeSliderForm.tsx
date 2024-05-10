@@ -1,16 +1,30 @@
-import React, { useState } from "react";
+import React, { useState, SetStateAction, Dispatch } from "react";
 import RangeSlider from "../../lib/RangeSlider";
 import AccordionDropdown from "@/components/lib/AccordionDropdown";
 
 const RangeSliderForm = () => {
-  const [popularityRange, setPopularityRange] = useState<[number, number]>([
-    1, 100,
-  ]);
-  const [energyValue, setEnergyValue] = useState<number>(5);
-  const [vibeValue, setVibeValue] = useState<number>(5);
-  const [danceabilityValue, setDanceabilityValue] = useState<number>(5);
-  const [acousticnessValue, setAcousticnessValue] = useState<number>(5);
-  const [instrumentalnessValue, setInstrumentalnessValue] = useState<number>(5);
+  const [popularityRange, setPopularityRange] = useState<
+    number | [number, number]
+  >([1, 100]);
+  const [energyValue, setEnergyValue] = useState<number | [number, number]>(5);
+  const [vibeValue, setVibeValue] = useState<number | [number, number]>(5);
+  const [danceabilityValue, setDanceabilityValue] = useState<
+    number | [number, number]
+  >(5);
+  const [acousticnessValue, setAcousticnessValue] = useState<
+    number | [number, number]
+  >(5);
+  const [instrumentalnessValue, setInstrumentalnessValue] = useState<
+    number | [number, number]
+  >(5);
+
+  const updateSliderValue = (
+    setState: Dispatch<SetStateAction<number | [number, number]>>
+  ) => {
+    return function (newValue: number | [number, number]) {
+      setState(newValue);
+    };
+  };
 
   return (
     <>
@@ -18,9 +32,7 @@ const RangeSliderForm = () => {
         <div className="overflow-auto max-h-80 h-full pb-6">
           <RangeSlider
             value={popularityRange}
-            onChange={(newValue: number | [number, number]) =>
-              setPopularityRange(newValue as [number, number])
-            }
+            onChange={updateSliderValue(setPopularityRange)}
             min={0}
             max={100}
             step={25}
@@ -28,9 +40,7 @@ const RangeSliderForm = () => {
           />
           <RangeSlider
             value={energyValue}
-            onChange={(newValue: number | [number, number]) =>
-              setEnergyValue(newValue as number)
-            }
+            onChange={updateSliderValue(setEnergyValue)}
             min={1}
             max={10}
             step={2.25}
@@ -38,20 +48,15 @@ const RangeSliderForm = () => {
           />
           <RangeSlider
             value={vibeValue}
-            onChange={(newValue: number | [number, number]) =>
-              setVibeValue(newValue as number)
-            }
+            onChange={updateSliderValue(setVibeValue)}
             min={1}
             max={10}
             step={2.25}
             label="Vibe"
           />
-  
           <RangeSlider
             value={danceabilityValue}
-            onChange={(newValue: number | [number, number]) =>
-              setDanceabilityValue(newValue as number)
-            }
+            onChange={updateSliderValue(setDanceabilityValue)}
             min={1}
             max={10}
             step={2.25}
@@ -59,9 +64,7 @@ const RangeSliderForm = () => {
           />
           <RangeSlider
             value={acousticnessValue}
-            onChange={(newValue: number | [number, number]) =>
-              setAcousticnessValue(newValue as number)
-            }
+            onChange={updateSliderValue(setAcousticnessValue)}
             min={1}
             max={10}
             step={2.25}
@@ -69,9 +72,7 @@ const RangeSliderForm = () => {
           />
           <RangeSlider
             value={instrumentalnessValue}
-            onChange={(newValue: number | [number, number]) =>
-              setInstrumentalnessValue(newValue as number)
-            }
+            onChange={updateSliderValue(setInstrumentalnessValue)}
             min={1}
             max={10}
             step={2.25}
