@@ -1,8 +1,7 @@
 "use client";
-import AvailableGenreSeeds from "@/components/availableGenreSeeds/AvailableGenreSeeds";
-import SelectedSeedSummary from "@/components/selectedSeedSummary/SelectedSeedSummary";
+import AvailableGenreSeeds from "@/components/page/availableGenreSeeds/AvailableGenreSeeds";
+import SelectedSeedSummary from "@/components/page/selectedSeedSummary/SelectedSeedSummary";
 import { useEffect, useState } from "react";
-// consider prefetching genres vs client side
 
 export default function Home() {
   const [selectedGenres, setSelectedGenres] = useState<Set<string>>(new Set());

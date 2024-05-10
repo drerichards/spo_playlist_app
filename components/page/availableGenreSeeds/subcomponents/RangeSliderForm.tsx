@@ -1,6 +1,6 @@
 import React, { useState, SetStateAction, Dispatch } from "react";
-import RangeSlider from "../../lib/RangeSlider";
-import AccordionDropdown from "@/components/lib/AccordionDropdown";
+import RangeSlider from "../../../ui/RangeSlider";
+import AccordionDropdown from "@/components/ui/AccordionDropdown";
 
 const RangeSliderForm = () => {
   const [popularityRange, setPopularityRange] = useState<

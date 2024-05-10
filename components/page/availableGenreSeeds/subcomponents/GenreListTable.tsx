@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import AccordionDropdown from "@/components/lib/AccordionDropdown";
+import AccordionDropdown from "@/components/ui/AccordionDropdown";
 
 interface GenreListTableProps {
   genres: string[];
