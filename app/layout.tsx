@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import { DM_Sans } from "next/font/google";
+import { Abel } from "next/font/google";
 import "./globals.css";
 
-const inter = DM_Sans({ subsets: ["latin"] });
+const inter = Abel({ subsets: ["latin"], weight: "400" });
 
 export const metadata: Metadata = {
   title: "Genre Playlist App",

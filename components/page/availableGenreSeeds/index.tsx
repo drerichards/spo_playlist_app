@@ -1,8 +1,8 @@
 import React, { Dispatch, SetStateAction, useState } from "react";
 import useGetSpotifyAccessToken from "@/hooks/useGetSpotifyAccessToken";
 import useAvailableGenreSeeds from "@/hooks/useAvailableGenreSeeds";
-import GenreListTable from "./subcomponents/GenreListTable";
-import RangeSliderForm from "./subcomponents/RangeSliderForm";
+import GenreListTable from "./internal/GenreListTable";
+import RangeSliderForm from "./internal/RangeSliderForm";
 
 const AvailableGenreSeeds = () => {
   const token = useGetSpotifyAccessToken();
@@ -16,6 +16,7 @@ const AvailableGenreSeeds = () => {
       {genres && (
         <>
           <GenreListTable genres={genres} />
+          <br/>
           <RangeSliderForm />
         </>
       )}
