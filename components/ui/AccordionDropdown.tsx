@@ -21,7 +21,7 @@ const AccordionDropdown = ({
     <>
       <button
         onClick={toggleAccordion}
-        className={`w-full text-left mb-2 ${backgroundColor} text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline`}
+        className={`w-full text-left mb-2 ${backgroundColor} hover:bg-purple-700  text-white font-bold py-2 px-4 focus:outline-none focus:shadow-outline`}
       >
         {title}
       </button>

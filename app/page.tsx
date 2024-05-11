@@ -1,6 +1,5 @@
 "use client";
-import AvailableGenreSeeds from "@/components/page/availableGenreSeeds/AvailableGenreSeeds";
-import SelectedSeedSummary from "@/components/page/selectedSeedSummary/SelectedSeedSummary";
+import AvailableGenreSeeds from "@/components/page/availableGenreSeeds";
 import { useEffect, useState } from "react";
 
 export default function Home() {

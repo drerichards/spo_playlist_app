@@ -1,8 +1,16 @@
 import React, { useState, SetStateAction, Dispatch } from "react";
-import RangeSlider from "../../../ui/RangeSlider";
+import RangeSlider from "@/components/ui/RangeSlider";
 import AccordionDropdown from "@/components/ui/AccordionDropdown";
+import FiltersDisplay from "./internal/FiltersDisplay";
 
 const RangeSliderForm = () => {
+  const [isPopEnabled, setIsPopEnabled] = useState(true);
+  const [isEngEnabled, setIsEngEnabled] = useState(true);
+  const [isVibEnabled, setIsVibEnabled] = useState(true);
+  const [isDncEnabled, setIsDncEnabled] = useState(true);
+  const [isInsEnabled, setIsInsEnabled] = useState(true);
+  const [isAcoEnabled, setIsAcoEnabled] = useState(true);
+
   const [popularityRange, setPopularityRange] = useState<
     number | [number, number]
   >([1, 100]);
@@ -28,7 +36,7 @@ const RangeSliderForm = () => {
 
   return (
     <>
-      <AccordionDropdown title="Filters" backgroundColor="bg-green-500">
+      <AccordionDropdown title="Filters" backgroundColor="bg-theme-blue">
         <div className="overflow-auto max-h-80 h-full pb-6">
           <RangeSlider
             value={popularityRange}
@@ -37,6 +45,9 @@ const RangeSliderForm = () => {
             max={100}
             step={25}
             label="Popularity"
+            isEnabled={isPopEnabled}
+            setIsEnabled={setIsPopEnabled}
+            toggleId="popularity-toggle"
           />
           <RangeSlider
             value={energyValue}
@@ -45,6 +56,9 @@ const RangeSliderForm = () => {
             max={10}
             step={2.25}
             label="Energy"
+            isEnabled={isEngEnabled}
+            setIsEnabled={setIsEngEnabled}
+            toggleId="energy-toggle"
           />
           <RangeSlider
             value={vibeValue}
@@ -53,6 +67,9 @@ const RangeSliderForm = () => {
             max={10}
             step={2.25}
             label="Vibe"
+            isEnabled={isVibEnabled}
+            setIsEnabled={setIsVibEnabled}
+            toggleId="vibe-toggle"
           />
           <RangeSlider
             value={danceabilityValue}
@@ -61,6 +78,9 @@ const RangeSliderForm = () => {
             max={10}
             step={2.25}
             label="Danceability"
+            isEnabled={isDncEnabled}
+            setIsEnabled={setIsDncEnabled}
+            toggleId="danceability-toggle"
           />
           <RangeSlider
             value={acousticnessValue}
@@ -69,6 +89,9 @@ const RangeSliderForm = () => {
             max={10}
             step={2.25}
             label="Acousticness"
+            isEnabled={isAcoEnabled}
+            setIsEnabled={setIsAcoEnabled}
+            toggleId="acousticness-toggle"
           />
           <RangeSlider
             value={instrumentalnessValue}
@@ -77,9 +100,21 @@ const RangeSliderForm = () => {
             max={10}
             step={2.25}
             label="Instrumentalness"
+            isEnabled={isInsEnabled}
+            setIsEnabled={setIsInsEnabled}
+            toggleId="instrumentalness-toggle"
           />
         </div>
       </AccordionDropdown>
+
+      <FiltersDisplay
+        popularityRange={popularityRange}
+        energyValue={energyValue}
+        vibeValue={vibeValue}
+        danceabilityValue={danceabilityValue}
+        acousticnessValue={acousticnessValue}
+        instrumentalnessValue={instrumentalnessValue}
+      />
     </>
   );
 };

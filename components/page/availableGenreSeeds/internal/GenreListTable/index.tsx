@@ -21,14 +21,14 @@ const GenreListTable = ({ genres }: GenreListTableProps) => {
   };
 
   const formatGenreList = () => (
-    <div className="text-xs text-right mb-2 italic font-semibold">
+    <div className="text-xs text-right mb-2 italic font-semibold capitalize">
       {Array.from(selectedGenres).join(" • ")}
     </div>
   );
 
   return (
     <>
-      <AccordionDropdown title="Genres" backgroundColor="bg-blue-500">
+      <AccordionDropdown title="Genres" backgroundColor="bg-theme-green">
         <ul
           role="list"
           className="grid lg:grid-cols-5 md:grid-cols-3 gap-4 overflow-auto max-h-80 h-full"
@@ -41,8 +41,8 @@ const GenreListTable = ({ genres }: GenreListTableProps) => {
                 }
                 className={`text-sm btn capitalize text-white font-light py-2 px-4 rounded focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out ${
                   selectedGenres.has(genre)
-                    ? "bg-blue-700"
-                    : "hover:bg-blue-500"
+                    ? "bg-theme-green-dark"
+                    : "hover:bg-theme-yellow"
                 }`}
               >
                 {genre}
