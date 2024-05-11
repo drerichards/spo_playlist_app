@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { SPOTIFY_ACCESS_TOKEN_URL } from '@/utils/constants';
 
 interface TokenResponse {
   access_token: string;
@@ -10,7 +11,7 @@ const useGetSpotifyAccessToken = (): string | null => {
 
   useEffect(() => {
     const fetchToken = async () => {
-      const response = await axios.post<TokenResponse>('https://accounts.spotify.com/api/token', {
+      const response = await axios.post<TokenResponse>(SPOTIFY_ACCESS_TOKEN_URL, {
         grant_type: 'client_credentials',
         client_id: process.env.SPOTIFY_CLIENT_ID,
         client_secret: process.env.SPOTIFY_CLIENT_SECRET,
