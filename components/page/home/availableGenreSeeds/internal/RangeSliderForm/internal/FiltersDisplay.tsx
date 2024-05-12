@@ -41,30 +41,30 @@ const FiltersDisplay: FC<FiltersDisplayProps> = ({
   };
   
   return (
-    <div className="flex flex-wrap justify-end text-xs mb-2 italic font-semibold">
+    <div className="flex flex-wrap justify-end text-sm italic cursor-default py-px">
       <span className="flex ml-6">
-        <p className="mr-1">Popularity:</p>
-        {formatValueOutput(popularityRange)}
+        <p className="mr-1 font-thin">Popularity:</p>
+        <p className="font-normal">{formatValueOutput(popularityRange)}</p>
       </span>
       <span className="flex ml-6">
-        <p className="mr-1">Energy:</p>
-        {formatValueOutput(energyValue)}
+        <p className="mr-1 font-thin">Energy:</p>
+        <p className="font-normal">{formatValueOutput(energyValue)}</p>
       </span>
       <span className="flex ml-6">
-        <p className="mr-1">Vibe:</p>
-        {formatValueOutput(vibeValue)}
+        <p className="mr-1 font-thin">Vibe:</p>
+        <p className="font-normal">{formatValueOutput(vibeValue)}</p>
       </span>
       <span className="flex ml-6">
-        <p className="mr-1">Danceability:</p>
-        {formatValueOutput(danceabilityValue)}
+        <p className="mr-1 font-thin">Danceability:</p>
+        <p className="font-normal">{formatValueOutput(danceabilityValue)}</p>
       </span>
       <span className="flex ml-6">
-        <p className="mr-1">Acousticness:</p>
-        {formatValueOutput(acousticnessValue)}
+        <p className="mr-1 font-thin">Acousticness:</p>
+        <p className="font-normal">{formatValueOutput(acousticnessValue)}</p>
       </span>
       <span className="flex ml-6">
-        <p className="mr-1">Instrumentalness:</p>
-        {formatValueOutput(instrumentalnessValue)}
+        <p className="mr-1 font-thin">Instrumentalness:</p>
+        <p className="font-normal">{formatValueOutput(instrumentalnessValue)}</p>
       </span>
     </div>
   );

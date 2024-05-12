@@ -1,30 +1,43 @@
-import React, { useState, SetStateAction, Dispatch } from "react";
+import React, { useState, SetStateAction, Dispatch, FC } from "react";
 import RangeSlider from "@/components/ui/RangeSlider";
 import AccordionDropdown from "@/components/ui/AccordionDropdown";
 import FiltersDisplay from "./internal/FiltersDisplay";
 
-const RangeSliderForm = () => {
+interface RangeSliderFormProps {
+  popularityRange: number | [number, number];
+  setPopularityRange: Dispatch<SetStateAction<number | [number, number]>>;
+  energyValue: number | [number, number];
+  setEnergyValue: Dispatch<SetStateAction<number | [number, number]>>;
+  vibeValue: number | [number, number];
+  setVibeValue: Dispatch<SetStateAction<number | [number, number]>>;
+  danceabilityValue: number | [number, number];
+  setDanceabilityValue: Dispatch<SetStateAction<number | [number, number]>>;
+  acousticnessValue: number | [number, number];
+  setAcousticnessValue: Dispatch<SetStateAction<number | [number, number]>>;
+  instrumentalnessValue: number | [number, number];
+  setInstrumentalnessValue: Dispatch<SetStateAction<number | [number, number]>>;
+}
+
+const RangeSliderForm: FC<RangeSliderFormProps> = ({
+  popularityRange,
+  setPopularityRange,
+  energyValue,
+  setEnergyValue,
+  vibeValue,
+  setVibeValue,
+  danceabilityValue,
+  setDanceabilityValue,
+  acousticnessValue,
+  setAcousticnessValue,
+  instrumentalnessValue,
+  setInstrumentalnessValue,
+}) => {
   const [isPopEnabled, setIsPopEnabled] = useState(true);
   const [isEngEnabled, setIsEngEnabled] = useState(true);
   const [isVibEnabled, setIsVibEnabled] = useState(true);
   const [isDncEnabled, setIsDncEnabled] = useState(true);
   const [isInsEnabled, setIsInsEnabled] = useState(true);
   const [isAcoEnabled, setIsAcoEnabled] = useState(true);
-
-  const [popularityRange, setPopularityRange] = useState<
-    number | [number, number]
-  >([1, 100]);
-  const [energyValue, setEnergyValue] = useState<number | [number, number]>(5);
-  const [vibeValue, setVibeValue] = useState<number | [number, number]>(5);
-  const [danceabilityValue, setDanceabilityValue] = useState<
-    number | [number, number]
-  >(5);
-  const [acousticnessValue, setAcousticnessValue] = useState<
-    number | [number, number]
-  >(5);
-  const [instrumentalnessValue, setInstrumentalnessValue] = useState<
-    number | [number, number]
-  >(5);
 
   const updateSliderValue = (
     setState: Dispatch<SetStateAction<number | [number, number]>>
@@ -34,10 +47,25 @@ const RangeSliderForm = () => {
     };
   };
 
+  const bannerSelectedFilters = (
+    <FiltersDisplay
+      popularityRange={popularityRange}
+      energyValue={energyValue}
+      vibeValue={vibeValue}
+      danceabilityValue={danceabilityValue}
+      acousticnessValue={acousticnessValue}
+      instrumentalnessValue={instrumentalnessValue}
+    />
+  );
+
   return (
     <>
-      <AccordionDropdown title="Filters" backgroundColor="bg-theme-blue">
-        <div className="overflow-auto max-h-80 h-full pb-6">
+      <AccordionDropdown
+        title="Filters"
+        backgroundColor="bg-theme-blue"
+        bannerContent={bannerSelectedFilters}
+      >
+        <>
           <RangeSlider
             value={popularityRange}
             onChange={updateSliderValue(setPopularityRange)}
@@ -104,17 +132,8 @@ const RangeSliderForm = () => {
             setIsEnabled={setIsInsEnabled}
             toggleId="instrumentalness-toggle"
           />
-        </div>
+        </>
       </AccordionDropdown>
-
-      <FiltersDisplay
-        popularityRange={popularityRange}
-        energyValue={energyValue}
-        vibeValue={vibeValue}
-        danceabilityValue={danceabilityValue}
-        acousticnessValue={acousticnessValue}
-        instrumentalnessValue={instrumentalnessValue}
-      />
     </>
   );
 };

@@ -1,8 +1,11 @@
 import type { Metadata } from "next";
-import { Abel } from "next/font/google";
+import { Barlow_Condensed } from "next/font/google";
 import "./globals.css";
 
-const inter = Abel({ subsets: ["latin"], weight: "400" });
+const inter = Barlow_Condensed({ subsets: ["latin"],
+weight: ["100", "200", "300", "400", "500", "600", "700"],
+
+ });
 
 export const metadata: Metadata = {
   title: "Genre Playlist App",

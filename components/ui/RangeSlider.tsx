@@ -33,23 +33,22 @@ const RangeSlider: React.FC<RangeSliderProps> = ({
         marks[i] = `${i}`;
       }
       return marks;
-    } else {
-      return {
-        1: "Min",
-        3.25: "Low",
-        5.5: "Mid",
-        7.75: "High",
-        10: "Max",
-      };
     }
+
+    return {
+      1: "Min",
+      3.25: "Low",
+      5.5: "Mid",
+      7.75: "High",
+      10: "Max",
+    };
   };
 
   const handleToggleChange = () => {
-    // When disabling, reset the slider value
     if (isEnabled && Array.isArray(value)) {
-      onChange([min, min]);
+      onChange([0, 0]);
     } else if (isEnabled) {
-      onChange(min);
+      onChange(0);
     }
 
     if (!isEnabled && Array.isArray(value)) {
@@ -61,7 +60,7 @@ const RangeSlider: React.FC<RangeSliderProps> = ({
   };
 
   return (
-    <div className="flex flex-col p-6">
+    <div className="flex flex-col mb-10 mx-6">
       <span className="mb-2 text-sm">{label}:</span>
       <ToggleButton
         isEnabled={isEnabled}

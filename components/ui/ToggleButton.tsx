@@ -33,11 +33,11 @@ const ToggleButton: FC<ToggleButtonProps> = ({
             }`}
           >
             {isEnabled ? (
-              <div className="flex text-xs">
+              <div className="flex text-xs w-8">
                 <span className="mr-1">On</span> {DISABLED_ICON}
               </div>
             ) : (
-              <div className="flex text-xs opacity-50">{DISABLED_ICON} <span className="ml-1">Off</span></div>
+              <div className="flex text-xs w-8 opacity-50">{DISABLED_ICON} <span className="ml-1">Off</span></div>
             )}
           </span>
         </label>
