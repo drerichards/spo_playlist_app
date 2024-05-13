@@ -4,18 +4,18 @@ import AccordionDropdown from "@/components/ui/AccordionDropdown";
 import FiltersDisplay from "./internal/FiltersDisplay";
 
 interface RangeSliderFormProps {
-  popularityRange: number | [number, number];
-  setPopularityRange: Dispatch<SetStateAction<number | [number, number]>>;
-  energyValue: number | [number, number];
-  setEnergyValue: Dispatch<SetStateAction<number | [number, number]>>;
-  vibeValue: number | [number, number];
-  setVibeValue: Dispatch<SetStateAction<number | [number, number]>>;
-  danceabilityValue: number | [number, number];
-  setDanceabilityValue: Dispatch<SetStateAction<number | [number, number]>>;
-  acousticnessValue: number | [number, number];
-  setAcousticnessValue: Dispatch<SetStateAction<number | [number, number]>>;
-  instrumentalnessValue: number | [number, number];
-  setInstrumentalnessValue: Dispatch<SetStateAction<number | [number, number]>>;
+  popularityRange: RecsFilterIndex;
+  setPopularityRange: Dispatch<SetStateAction<RecsFilterIndex>>;
+  energyValue: RecsFilterIndex;
+  setEnergyValue: Dispatch<SetStateAction<RecsFilterIndex>>;
+  vibeValue: RecsFilterIndex;
+  setVibeValue: Dispatch<SetStateAction<RecsFilterIndex>>;
+  danceabilityValue: RecsFilterIndex;
+  setDanceabilityValue: Dispatch<SetStateAction<RecsFilterIndex>>;
+  acousticnessValue: RecsFilterIndex;
+  setAcousticnessValue: Dispatch<SetStateAction<RecsFilterIndex>>;
+  instrumentalnessValue: RecsFilterIndex;
+  setInstrumentalnessValue: Dispatch<SetStateAction<RecsFilterIndex>>;
 }
 
 const RangeSliderForm: FC<RangeSliderFormProps> = ({
@@ -40,9 +40,9 @@ const RangeSliderForm: FC<RangeSliderFormProps> = ({
   const [isAcoEnabled, setIsAcoEnabled] = useState(true);
 
   const updateSliderValue = (
-    setState: Dispatch<SetStateAction<number | [number, number]>>
+    setState: Dispatch<SetStateAction<RecsFilterIndex>>
   ) => {
-    return function (newValue: number | [number, number]) {
+    return function (newValue: RecsFilterIndex) {
       setState(newValue);
     };
   };

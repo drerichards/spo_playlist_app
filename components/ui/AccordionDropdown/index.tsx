@@ -6,7 +6,7 @@ import {
 } from "./styles";
 
 interface AccordionDropdownProps {
-  title: string | ReactNode;
+  title: Genre | ReactNode;
   backgroundColor: string;
   backgroundColorHover: string;
   bannerContent: ReactNode;

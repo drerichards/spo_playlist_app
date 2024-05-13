@@ -4,8 +4,8 @@ import "rc-slider/assets/index.css";
 import ToggleButton from "./ToggleButton";
 
 interface RangeSliderProps {
-  value: number | [number, number];
-  onChange: (value: number | [number, number]) => void;
+  value: RecsFilterIndex;
+  onChange: (value: RecsFilterIndex) => void;
   min: number;
   max: number;
   step: number;

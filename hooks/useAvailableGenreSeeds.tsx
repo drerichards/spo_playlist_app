@@ -3,7 +3,7 @@ import useSWR from "swr";
 import { SPOTIFY_API_URL_PREFIX } from "@/utils/constants";
 
 const fetchGenres = async ([url, token]: [string, string]): Promise<
-  string[]
+  Genre[]
 > => {
   const response = await axios.get<GenresResponse>(url, {
     headers: {

@@ -2,32 +2,68 @@ import axios from "axios";
 import useSWR from "swr";
 import { SPOTIFY_API_URL_PREFIX } from "@/utils/constants";
 
-interface FetchParams {
-  token: string;
-  params: {
-    limit?: number;
-    seed_genres: string;
-    min_danceability?: number;
-    max_danceability?: number;
-    target_danceability?: number;
-    target_popularity?: number;
-  };
+const extractTrackData = (rawTracks: Track[]): Track[] => {
+  return rawTracks.map(track => ({
+    album: {
+      href: track.album.href,
+      id: track.album.id,
+      name: track.album.name,
+      uri: track.album.uri,
+    },
+    artists: track.artists.map(artist => ({
+      href: artist.href,
+      id: artist.id,
+      name: artist.name,
+      uri: artist.uri,
+    })),
+    explicit: track.explicit,
+    href: track.href,
+    id: track.id,
+    name: track.name,
+    popularity: track.popularity,
+    preview_url: track.preview_url,
+    type: track.type,
+    uri: track.uri,
+  }));
 }
 
-const fetchRecommendations = async ({ token, params }: FetchParams): Promise<Track[]> => {
-  const baseUrl = 'https://api.spotify.com/v1/recommendations';
-  
-  // Create an instance of URLSearchParams
-  const queryParams = new URLSearchParams();
+const fetchTrackRecommendations = async ({
+  token,
+  params,
+}: RecommendationsRequest): Promise<Track[]> => {
+  const {
+    selectedGenres,
+    popularityRange,
+    energyValue,
+    vibeValue,
+    danceabilityValue,
+    acousticnessValue,
+    instrumentalnessValue,
+  } = params;
 
-  // Only append parameters that are not undefined
-  Object.entries(params).forEach(([key, value]) => {
-    if (value !== undefined) {  // Check for undefined values
-      queryParams.append(key, value.toString()); // Ensure values are converted to strings
-    }
+  const queryParams = new URLSearchParams({
+    limit: "10",
   });
 
-  const url = `${baseUrl}?${queryParams.toString()}`;
+  if (Array.from(selectedGenres).length > 0) {
+    queryParams.append("seed_genres", Array.from(selectedGenres).join(","));
+  }
+
+  if (Array.isArray(popularityRange)) {
+    queryParams.append("min_popularity", popularityRange[0].toString());
+    queryParams.append("max_popularity", popularityRange[1].toString());
+  }
+
+  queryParams.append("target_energy", energyValue.toString());
+  queryParams.append("target_valence", vibeValue.toString());
+  queryParams.append("target_danceability", danceabilityValue.toString());
+  queryParams.append("target_acousticness", acousticnessValue.toString());
+  queryParams.append(
+    "target_instrumentalness",
+    instrumentalnessValue.toString()
+  );
+
+  const url = `${SPOTIFY_API_URL_PREFIX}/recommendations?${queryParams.toString()}`;
 
   const response = await axios.get<RecommendationsResponse>(url, {
     headers: {
@@ -35,21 +71,22 @@ const fetchRecommendations = async ({ token, params }: FetchParams): Promise<Tra
     },
   });
 
-  return response.data.tracks;
+  return extractTrackData(response.data.tracks);
 };
 
-const useGetTrackRecommendations = (token: string | null, params: FetchParams['params']) => {
-  const { data, error } = useSWR<Track[]>(
-    token ? JSON.stringify({ token, params }) : null,
-    () => fetchRecommendations({ token, params }),
-    {
-      revalidateOnFocus: false,
-      revalidateOnReconnect: true,
-      onError: (error) => {
-        console.error("Failed to fetch track recommendations: ", error);
-      },
-    }
-  );
+const useGetTrackRecommendations = (
+  token: string | null,
+  params: RecommendationsParams
+) => {
+  const fetchKey = token ? JSON.stringify({ token, params }) : null;
+  const { data, error } = useSWR(fetchKey, () => fetchTrackRecommendations({ token, params }), {
+    revalidateOnFocus: false,
+    revalidateOnReconnect: true,
+    onError: (error) => {
+      console.error("Failed to fetch track recommendations: ", error);
+    },
+  });
+  console.log(data)
 
   return {
     tracks: data,
@@ -58,8 +95,4 @@ const useGetTrackRecommendations = (token: string | null, params: FetchParams['p
   };
 };
 
-
 export default useGetTrackRecommendations;
-
-// http GET 'https://api.spotify.com/v1/recommendations?limit=1&seed_genres=soul&min_danceability=0&max_danceability=50&target_danceability=25&target_popularity=100' \
-//   Authorization:'Bearer 1POdFZRZbvb...qqillRxMr2z'

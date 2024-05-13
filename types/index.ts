@@ -1,10 +1,25 @@
+interface RecommendationsRequest {
+  token: string | null;
+  params: RecommendationsParams;
+}
+
+interface RecommendationsParams {
+  selectedGenres: Set<Genre>;
+  popularityRange: RecsFilterIndex;
+  energyValue: RecsFilterIndex;
+  vibeValue: RecsFilterIndex;
+  danceabilityValue: RecsFilterIndex;
+  acousticnessValue: RecsFilterIndex;
+  instrumentalnessValue: RecsFilterIndex;
+}
+
 interface RecommendationsResponse {
   seeds: Seed[];
   tracks: Track[];
 }
 
 interface GenresResponse {
-  genres: string[];
+  genres: Genre[];
 }
 
 interface Seed {
@@ -37,3 +52,11 @@ interface Artist {
   name: string;
   uri: string;
 }
+
+type Genre = string;
+
+type RecsRecsFilterIndex = number;
+
+type RecsFilterRange = [number, number];
+
+type RecsFilterIndex = RecsRecsFilterIndex | RecsFilterRange;

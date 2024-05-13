@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import AccordionDropdown from "@/components/ui/AccordionDropdown";
 
 interface GenreListTableProps {
-  genres: string[];
-  selectedGenres: Set<string>;
-  setSelectedGenres: React.Dispatch<React.SetStateAction<Set<string>>>;
+  genres: Genre[];
+  selectedGenres: Set<Genre>;
+  setSelectedGenres: React.Dispatch<React.SetStateAction<Set<Genre>>>;
 }
 
 const GenreListTable = ({
@@ -12,7 +12,7 @@ const GenreListTable = ({
   selectedGenres,
   setSelectedGenres,
 }: GenreListTableProps) => {
-  const toggleGenre = (genre: string) => {
+  const toggleGenre = (genre: Genre) => {
     setSelectedGenres((prevSelectedGenres) => {
       const newSet = new Set(prevSelectedGenres);
       if (newSet.has(genre)) {
@@ -54,7 +54,7 @@ const GenreListTable = ({
         bannerContent={bannerSelectedGenres}
       >
         <ul role="list" className="grid lg:grid-cols-5 md:grid-cols-3 gap-4">
-          {genres.map((genre: string, index: React.Key | null | undefined) => (
+          {genres.map((genre: Genre, index: React.Key | null | undefined) => (
             <li key={index} className="text-center">
               <button
                 onClick={() => toggleGenre(genre)}

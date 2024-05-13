@@ -1,12 +1,12 @@
 import React, { FC } from "react";
 
 interface FiltersDisplayProps {
-  popularityRange: number | [number, number];
-  energyValue: number | [number, number];
-  vibeValue: number | [number, number];
-  danceabilityValue: number | [number, number];
-  acousticnessValue: number | [number, number];
-  instrumentalnessValue: number | [number, number];
+  popularityRange: RecsFilterIndex;
+  energyValue: RecsFilterIndex;
+  vibeValue: RecsFilterIndex;
+  danceabilityValue: RecsFilterIndex;
+  acousticnessValue: RecsFilterIndex;
+  instrumentalnessValue: RecsFilterIndex;
 }
 
 const FiltersDisplay: FC<FiltersDisplayProps> = ({
@@ -17,7 +17,7 @@ const FiltersDisplay: FC<FiltersDisplayProps> = ({
   acousticnessValue,
   instrumentalnessValue,
 }) => {
-  const formatValueOutput = (value: number | [number, number]) => {
+  const formatValueOutput = (value: RecsFilterIndex) => {
     if (Array.isArray(value)) {
       return `${value[0]} - ${value[1]}`;
     }
