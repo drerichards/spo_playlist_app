@@ -41,7 +41,7 @@ const FiltersDisplay: FC<FiltersDisplayProps> = ({
   };
   
   return (
-    <div className="flex flex-wrap justify-end text-sm italic cursor-default py-px">
+    <div className="flex flex-wrap justify-end text-sm italic py-px">
       <span className="flex ml-6">
         <p className="mr-1 font-thin">Popularity:</p>
         <p className="font-normal">{formatValueOutput(popularityRange)}</p>

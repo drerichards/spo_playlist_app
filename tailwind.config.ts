@@ -10,9 +10,7 @@ const config: Config = {
   theme: {
     extend: {
       backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+        'gradient-to-b': 'linear-gradient(to bottom, #191919, #111111)',
       },
     },
     colors: {
@@ -33,7 +31,8 @@ const config: Config = {
       },
       "theme-black": {
         DEFAULT: "#383838",
-        light: "#51514F"
+        light: "#51514F",
+        dark: "#1d1d1d"
       },
     },
     height: {

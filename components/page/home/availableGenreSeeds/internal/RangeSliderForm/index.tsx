@@ -62,7 +62,8 @@ const RangeSliderForm: FC<RangeSliderFormProps> = ({
     <>
       <AccordionDropdown
         title="Filters"
-        backgroundColor="bg-theme-blue"
+        backgroundColor="#4D7EA8"
+        backgroundColorHover="#4D7EA8"
         bannerContent={bannerSelectedFilters}
       >
         <>

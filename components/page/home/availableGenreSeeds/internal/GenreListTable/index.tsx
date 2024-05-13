@@ -25,7 +25,7 @@ const GenreListTable = ({
   };
 
   const formatGenreList = () => (
-    <div className="">
+    <div onClick={e => e.stopPropagation()}>
       {Array.from(selectedGenres).map((genre) => (
         <button
           key={genre}
@@ -49,7 +49,8 @@ const GenreListTable = ({
     <>
       <AccordionDropdown
         title={bannerTitle}
-        backgroundColor="bg-theme-green"
+        backgroundColor="#1ED760"
+        backgroundColorHover="#169F46"
         bannerContent={bannerSelectedGenres}
       >
         <ul role="list" className="grid lg:grid-cols-5 md:grid-cols-3 gap-4">

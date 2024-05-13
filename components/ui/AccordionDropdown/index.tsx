@@ -1,8 +1,14 @@
 import React, { ReactNode, useState } from "react";
+import {
+  AccordionButton,
+  AccordionContent,
+  AccordionInnerContent,
+} from "./styles";
 
 interface AccordionDropdownProps {
   title: string | ReactNode;
   backgroundColor: string;
+  backgroundColorHover: string;
   bannerContent: ReactNode;
   children: ReactNode;
 }
@@ -10,6 +16,7 @@ interface AccordionDropdownProps {
 const AccordionDropdown = ({
   title,
   backgroundColor,
+  backgroundColorHover,
   bannerContent,
   children,
 }: AccordionDropdownProps) => {
@@ -21,23 +28,19 @@ const AccordionDropdown = ({
 
   return (
     <>
-      <button
+      <AccordionButton
         onClick={toggleAccordion}
-        style={{ height: "48px" }}
-        className={`w-full text-left ${backgroundColor} hover:bg-purple-700  text-white font-bold h-12  px-4 focus:outline-none focus:shadow-outline`}
+        backgroundColor={backgroundColor}
+        backgroundColorHover={backgroundColorHover}
       >
         <span className="flex justify-between items-center">
           {title}
           {bannerContent}
         </span>
-      </button>
-      <div
-        className={`duration-500 ease-in-out ${
-          isOpen ? "max-h-108 h-108 bg-theme-black-light" : "h-0 max-h-0"
-        } overflow-hidden`}
-      >
-        <div className="overflow-auto max-h-108 p-4">{children}</div>
-      </div>
+      </AccordionButton>
+      <AccordionContent isOpen={isOpen}>
+        <AccordionInnerContent>{children}</AccordionInnerContent>
+      </AccordionContent>
     </>
   );
 };
