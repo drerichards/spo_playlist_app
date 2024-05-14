@@ -30,7 +30,7 @@ const GenreListTable = ({
         <button
           key={genre}
           onClick={() => toggleGenre(genre)}
-          className="border text-white rounded-full px-3 py-1 font-semibold mr-2 text-xs italic capitalize"
+          className="border text-white rounded-full px-3 py-1 font-semibold mr-2 text-sm italic capitalize"
         >
           {genre}
         </button>

@@ -9,7 +9,8 @@ interface AccordionDropdownProps {
   title: Genre | ReactNode;
   backgroundColor: string;
   backgroundColorHover: string;
-  bannerContent: ReactNode;
+  bannerContent?: ReactNode;
+  noPaddingTop?: boolean;
   children: ReactNode;
 }
 
@@ -18,6 +19,7 @@ const AccordionDropdown = ({
   backgroundColor,
   backgroundColorHover,
   bannerContent,
+  noPaddingTop,
   children,
 }: AccordionDropdownProps) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -39,7 +41,9 @@ const AccordionDropdown = ({
         </span>
       </AccordionButton>
       <AccordionContent isOpen={isOpen}>
-        <AccordionInnerContent>{children}</AccordionInnerContent>
+        <AccordionInnerContent noPaddingTop={noPaddingTop}>
+          {children}
+        </AccordionInnerContent>
       </AccordionContent>
     </>
   );

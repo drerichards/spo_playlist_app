@@ -1,4 +1,4 @@
-import { DISABLED_ICON } from "@/utils/constants";
+import { DISABLED_ICON } from "@/utils/assets";
 import React, { FC, ReactNode } from "react";
 
 interface ToggleButtonProps {

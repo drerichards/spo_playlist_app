@@ -1,5 +1,9 @@
+import AccordionDropdown from "@/components/ui/AccordionDropdown";
+import TracksTable from "@/components/ui/TracksTable";
 import useGetTrackRecommendations from "@/hooks/useGetTrackRecommendations";
 import React, { useState } from "react";
+import { DummyHeader } from "@/components/ui/TracksTable/styles";
+import { PAUSE_ICON, PLAY_ICON } from "@/utils/assets";
 
 interface TrackRecommendationsProps {
   token: string | null;
@@ -21,14 +25,17 @@ const TrackRecommendations: React.FC<TrackRecommendationsProps> = ({
   return (
     <>
       {tracks && tracks.length > 0 && (
-        <div>
-          <h2>Track Recommendations</h2>
-          <ul>
-            {tracks.map((track) => (
-              <li key={track.id}>{track.artists[0].name} - {track.name}</li>
-            ))}
-          </ul>
-        </div>
+        <AccordionDropdown
+          title="Track Recommendations"
+          backgroundColor="#FFBC42"
+          backgroundColorHover="#CC9601"
+          noPaddingTop={true}
+        >
+          <div>
+            <DummyHeader />
+            <TracksTable tracks={tracks} />
+          </div>
+        </AccordionDropdown>
       )}
     </>
   );

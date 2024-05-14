@@ -10,10 +10,14 @@ interface AccordionContentProps {
   isOpen: boolean;
 }
 
+interface AccordionInnerContentProps {
+  noPaddingTop?: boolean;
+}
+
 export const AccordionButton = styled.button<AccordionButtonProps>`
   width: 100%;
   text-align: left;
-  background-color: ${(props) => props.backgroundColor};
+  background-color: ${(props) => props.backgroundColorHover};
   color: white;
   font-weight: bold;
   padding: 0 1rem;
@@ -41,8 +45,8 @@ export const AccordionContent = styled.div<AccordionContentProps>`
   background: #313131;
 `;
 
-export const AccordionInnerContent = styled.div`
-  padding: 1rem;
+export const AccordionInnerContent = styled.div<AccordionInnerContentProps>`
+  padding: ${(props) => (props.noPaddingTop ? '0 1rem 1rem 1rem' : '1rem')};
   max-height: 500px;
   overflow: auto;
 `;

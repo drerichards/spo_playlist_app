@@ -42,7 +42,7 @@ const AvailableGenreSeeds = () => {
   if (isError) return <div>Error loading genres.</div>;
 
   const formatGenreList = () => (
-    <div className="text-xs text-right mb-2 italic font-semibold capitalize">
+    <div className="text-sm mb-2 italic font-semibold capitalize">
       {Array.from(selectedGenres).join(" • ")}
     </div>
   );

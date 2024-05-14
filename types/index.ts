@@ -30,27 +30,36 @@ interface Track {
   album: Album;
   artists: Artist[];
   explicit: boolean;
-  href: string;
+  external_urls: {
+    spotify: string;
+  };
   id: string;
   name: string;
   popularity: number;
   preview_url: string;
-  type: string;
-  uri: string;
 }
 
 interface Album {
-  href: string;
+  external_urls: {
+    spotify: string;
+  };
   id: string;
+  images: Image[];
   name: string;
-  uri: string;
 }
 
 interface Artist {
-  href: string;
+  external_urls: {
+    spotify: string;
+  };
   id: string;
   name: string;
-  uri: string;
+}
+
+interface Image {
+  height: number;
+  url: string;
+  width: number;
 }
 
 type Genre = string;

@@ -25,7 +25,7 @@ const config: Config = {
         light: "#5C95C7",
       },
       "theme-yellow": {
-        DEFAULT: "#FCBA04",
+        DEFAULT: "#FFBC42",
         dark: "#CC9601",
         light: "#FFD45E",
       },

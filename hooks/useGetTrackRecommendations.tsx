@@ -5,25 +5,26 @@ import { SPOTIFY_API_URL_PREFIX } from "@/utils/constants";
 const extractTrackData = (rawTracks: Track[]): Track[] => {
   return rawTracks.map(track => ({
     album: {
-      href: track.album.href,
+      external_urls: track.album.external_urls,
       id: track.album.id,
       name: track.album.name,
-      uri: track.album.uri,
+      images: track.album.images.map(image => ({
+        height: image.height,
+        url: image.url,
+        width: image.width,
+      }))
     },
     artists: track.artists.map(artist => ({
-      href: artist.href,
+      external_urls: artist.external_urls,
       id: artist.id,
       name: artist.name,
-      uri: artist.uri,
     })),
     explicit: track.explicit,
-    href: track.href,
+    external_urls: track.external_urls,
     id: track.id,
     name: track.name,
     popularity: track.popularity,
     preview_url: track.preview_url,
-    type: track.type,
-    uri: track.uri,
   }));
 }
 
@@ -62,7 +63,6 @@ const fetchTrackRecommendations = async ({
     "target_instrumentalness",
     instrumentalnessValue.toString()
   );
-
   const url = `${SPOTIFY_API_URL_PREFIX}/recommendations?${queryParams.toString()}`;
 
   const response = await axios.get<RecommendationsResponse>(url, {
@@ -70,6 +70,8 @@ const fetchTrackRecommendations = async ({
       Authorization: `Bearer ${token}`,
     },
   });
+  console.log(response.data.tracks)
+
 
   return extractTrackData(response.data.tracks);
 };
@@ -86,7 +88,6 @@ const useGetTrackRecommendations = (
       console.error("Failed to fetch track recommendations: ", error);
     },
   });
-  console.log(data)
 
   return {
     tracks: data,
